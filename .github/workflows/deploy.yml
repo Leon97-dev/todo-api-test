@@ -23,4 +23,5 @@ jobs:
             npm install
             npm run build
             npm run prisma:deploy
+            pm2 reload todo-api
             echo "Prisma migration completed"
