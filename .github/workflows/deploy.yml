@@ -19,9 +19,10 @@ jobs:
           port: 22
           script: |
             cd /home/ec2-user/todo-api-test
-            git pull origin main
+            git fetch origin
+            git reset --hard origin/main
             npm install
             npm run build
             npm run prisma:deploy
-            pm2 reload todo-api
+            pm2 reload todo-api --update-env
             echo "Prisma migration completed"
