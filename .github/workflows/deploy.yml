@@ -22,4 +22,5 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            echo "Code updated"
+            npm run prisma:deploy
+            echo "Prisma migration completed"
