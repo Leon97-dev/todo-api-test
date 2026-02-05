@@ -17,6 +17,10 @@ app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
+app.get('/sentry-test', () => {
+  throw new Error('Sentry test error');
+});
+
 app.get('/tasks', getTasks);
 app.get('/tasks/:id', getTaskById);
 app.post('/tasks', createTask);
