@@ -13,6 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser())
 
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 app.get('/tasks', getTasks);
 app.get('/tasks/:id', getTaskById);
 app.post('/tasks', createTask);
