@@ -18,4 +18,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           port: 22
           script: |
-            echo "Connected to EC2"
+            cd /home/ec2-user/todo-api-test
+            git pull origin main
+            echo "Code updated"
