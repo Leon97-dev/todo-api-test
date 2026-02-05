@@ -2,6 +2,7 @@
   "scripts": {
     "dev": "ts-node src/main.ts",
     "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "start": "node dist/main.js",
     "test": "dotenv -e .env.test -- npm run prisma:migrate && dotenv -e .env.test -- jest",
     "prisma:generate": "prisma generate",
