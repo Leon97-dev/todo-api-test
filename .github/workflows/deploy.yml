@@ -20,4 +20,5 @@ jobs:
           script: |
             cd /home/ec2-user/todo-api-test
             git pull origin main
+            npm install
             echo "Code updated"
