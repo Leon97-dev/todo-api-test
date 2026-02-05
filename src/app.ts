@@ -1,34 +1,39 @@
-import express from 'express';
+import * as Sentry from "@sentry/node";
+import express from "express";
 import {
   getTasks,
   getTaskById,
   createTask,
   updateTask,
   deleteTask,
-} from './task.controller';
-import cookieParser from 'cookie-parser';
-import { authenticate, login, logout } from './auth.controller';
+} from "./task.controller";
+import cookieParser from "cookie-parser";
+import { authenticate, login, logout } from "./auth.controller";
 
 const app = express();
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.get('/health', (_req, res) => {
-  res.status(200).json({ status: 'ok' });
+
+app.get("/health", (_req, res) => {
+  res.status(200).json({ status: "ok" });
 });
 
-app.get('/sentry-test', () => {
-  throw new Error('Sentry test error');
+app.get("/sentry-test", () => {
+  throw new Error("Sentry test error");
 });
 
-app.get('/tasks', getTasks);
-app.get('/tasks/:id', getTaskById);
-app.post('/tasks', createTask);
-app.patch('/tasks/:id', updateTask);
-app.delete('/tasks/:id', deleteTask);
 
-app.post('/login', login);
-app.post('/logout', logout);
-app.get('/auth/tasks', authenticate, getTasks);
+app.get("/tasks", getTasks);
+app.get("/tasks/:id", getTaskById);
+app.post("/tasks", createTask);
+app.patch("/tasks/:id", updateTask);
+app.delete("/tasks/:id", deleteTask);
+
+app.post("/login", login);
+app.post("/logout", logout);
+app.get("/auth/tasks", authenticate, getTasks);
+
+Sentry.setupExpressErrorHandler(app);
 
 export default app;
